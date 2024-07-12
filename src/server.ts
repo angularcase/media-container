@@ -4,9 +4,14 @@ import sharp from 'sharp';
 import { v4 as uuidv4 } from 'uuid';
 import fs from 'fs';
 import path from 'path';
+import cors from 'cors';
 
 const app = express();
 const PORT = 6969;
+
+app.use(cors({
+    origin: 'http://localhost:4200', // Możesz dodać inne adresy, jeśli potrzebujesz
+}));
 
 // Folder na obrazy
 const IMAGES_DIR = path.join(__dirname, '../images');
@@ -66,5 +71,5 @@ app.delete('/remove/:hash', (req: Request, res: Response) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`media-container is listening on: ${PORT}`);
 });
